@@ -1,8 +1,7 @@
 package datastructures.list;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class SequentialOrderedLinearList<T extends Comparable<T>> implements
+public class SequentialOrderedLinearList<T extends Comparable<T>> extends
 		LinearList<T> {
 	
 	private class Node<U extends Comparable<U>> {
@@ -34,72 +33,46 @@ public class SequentialOrderedLinearList<T extends Comparable<T>> implements
 		
 	}
 
+	private static int MAX_CAPACITY = 99999999;
 	@SuppressWarnings("unchecked")
-	private Node<T>[] list = new Node[256901116];
+	private Node<T>[] list = new Node[MAX_CAPACITY];
 	private int headIndex = -1;
-	private int tailIndex = -1;
 	private int lastIndex = 0;
 
 	@Override
-	public void addFirst(T value) {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public void addLast(T value) {
+	public void insertLast(T value) {
 		if (lastIndex < list.length) {
 			int nextIndex = -1, 
-				index = headIndex,
+				currentIndex = headIndex,
 				previousIndex = -1;
 			
-			while (index != -1) {
-				if (previousIndex != -1) {
-					if (value.compareTo(list[previousIndex].getValue()) > 0 && value.compareTo(list[index].getValue()) < 0) {
-						nextIndex = index;
-					}
-				}
-				else {
-					if (value.compareTo(list[index].getValue()) < 0) {
-						nextIndex = index;
-					}
+			while (currentIndex != -1) {
+				if (value.compareTo(list[currentIndex].getValue()) <= 0 
+						&& (previousIndex == -1 
+							|| (previousIndex != -1 && value.compareTo(list[previousIndex].getValue()) >= 0))) {
+					nextIndex = currentIndex; 
+					break;
 				}
 				
-				previousIndex = index;
-				index = list[index].getNext();
-			}
+				previousIndex = currentIndex;
+				currentIndex = list[currentIndex].getNext();
+			} 
 			
 			if (nextIndex == headIndex) {
 				headIndex = lastIndex;
 			}
-			
-			if (nextIndex == -1) {
-				if (tailIndex != -1) {
-					list[tailIndex].setNext(lastIndex);
-				}
-				tailIndex = lastIndex;
+			else if (previousIndex != -1) {
+				list[previousIndex].setNext(lastIndex);
 			}
-
+			
 			list[lastIndex] = new Node<T>(value, nextIndex);
 			lastIndex++;
 		}
-
+		else {
+			throw new IllegalStateException("The list is full.");
+		}
 	}
 
-	@Override
-	public void insert(T value, int index) {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public T get(int index) {
-		throw new NotImplementedException();
-	}
-
-	@Override
-	public T remove(int index) {
-		throw new NotImplementedException();
-	}
-	
 	@Override
 	public boolean remove(T value) {
 		int index = headIndex,

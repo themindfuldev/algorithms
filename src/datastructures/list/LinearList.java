@@ -1,12 +1,37 @@
 package datastructures.list;
 
-public interface LinearList<T> {
-	public void addFirst(T value);
-	public void addLast(T value);
-	public void insert(T value, int index);
-	public T get(int index);
-	public T remove(int index);
-	public boolean remove(T value);
-	public int size();
-	public String print();
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+public abstract class LinearList<T> {
+	public void insertFirst(T value) {
+		throw new NotImplementedException();
+	}
+
+	public void insertLast(T value) {
+		throw new NotImplementedException();
+	}
+
+	public void insert(T value, int index) {
+		throw new NotImplementedException();
+	}
+
+	public T get(int index) {
+		throw new NotImplementedException();
+	}
+
+	public T remove(int index) {
+		throw new NotImplementedException();
+	}
+
+	public boolean remove(T value) {
+		throw new NotImplementedException();
+	}
+
+	public int size() {
+		throw new NotImplementedException();
+	}
+
+	public String print() {
+		throw new NotImplementedException();
+	}
 }
