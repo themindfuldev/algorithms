@@ -6,10 +6,11 @@ public class LinkedCircularLinearList<T extends Comparable<T>> extends
 	@Override
 	public void insert(T value) {
 		if (headNode == null) {
-			headNode = new Node<T>(value, headNode);
+			headNode = new Node<T>(value, null);
+			headNode.setNext(headNode);
 		} else {
-			Node<T> newNode = new Node<T>(value, headNode);
-			headNode = newNode;
+			Node<T> newNode = new Node<T>(value, headNode.getNext());
+			headNode.setNext(newNode);
 		}
 	}
 
@@ -17,7 +18,7 @@ public class LinkedCircularLinearList<T extends Comparable<T>> extends
 	public T get(int iterations) {
 		T value = null;
 
-		if (iterations > 0) {
+		if (iterations > 0 && headNode != null) {
 			Node<T> currentNode = headNode;
 			for (int i = 0; i < iterations; i++) {
 				currentNode = currentNode.getNext();
@@ -36,7 +37,7 @@ public class LinkedCircularLinearList<T extends Comparable<T>> extends
 		Node<T> currentNode = headNode, previousNode = headNode;
 		T value = null;
 
-		if (currentNode != null) {
+		if (currentNode != null && iterations >= 0) {
 			for (int i = 0; i < iterations; i++) {
 				currentNode = currentNode.getNext();
 			}
@@ -99,7 +100,7 @@ public class LinkedCircularLinearList<T extends Comparable<T>> extends
 			do {
 				size++;
 				currentNode = currentNode.getNext();
-			} while (currentNode.getNext() != headNode);
+			} while (currentNode != headNode);
 		}
 
 		return size;
@@ -114,10 +115,10 @@ public class LinkedCircularLinearList<T extends Comparable<T>> extends
 			do {
 				printedList.append(currentNode.getValue());
 				currentNode = currentNode.getNext();
-				if (currentNode.getNext() != headNode) {
+				if (currentNode != headNode) {
 					printedList.append(",");
 				}
-			} while (currentNode.getNext() != headNode);
+			} while (currentNode != headNode);
 		}
 
 		return printedList.toString();

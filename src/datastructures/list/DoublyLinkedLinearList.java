@@ -1,13 +1,15 @@
 package datastructures.list;
 
-public class LinkedLinearList<T extends Comparable<T>> extends LinearList<T> {
+public class DoublyLinkedLinearList<T extends Comparable<T>> extends LinearList<T> {
 	class Node<U extends Comparable<U>> {
 		private U value;
 		private Node<U> next;
+		private Node<U> prev;
 
-		public Node(U value, Node<U> next) {
+		public Node(U value, Node<U> next, Node<U> prev) {
 			this.value = value;
 			this.next = next;
+			this.prev = prev;
 		}
 
 		public U getValue() {
@@ -21,10 +23,18 @@ public class LinkedLinearList<T extends Comparable<T>> extends LinearList<T> {
 		public void setNext(Node<U> next) {
 			this.next = next;
 		}
+		
+		public Node<U> getPrev() {
+			return prev;
+		}
+
+		public void setPrev(Node<U> prev) {
+			this.prev = prev;
+		}
 
 		@Override
 		public String toString() {
-			return "[" + value.toString() + "]";
+			return "[" + value.toString() + "], " + next;
 		}
 
 	}
@@ -34,9 +44,10 @@ public class LinkedLinearList<T extends Comparable<T>> extends LinearList<T> {
 	@Override
 	public void insert(T value) {
 		if (headNode == null) {
-			headNode = new Node<T>(value, null);
+			headNode = new Node<T>(value, null, null);
 		} else {
-			Node<T> newNode = new Node<T>(value, headNode);
+			Node<T> newNode = new Node<T>(value, headNode, null);
+			headNode.setPrev(newNode);
 			headNode = newNode;
 		}
 	}
@@ -63,24 +74,32 @@ public class LinkedLinearList<T extends Comparable<T>> extends LinearList<T> {
 
 	@Override
 	public T remove(int iterations) {
-		Node<T> currentNode = headNode, previousNode = null;
+		Node<T> currentNode = headNode;
 		T value = null;
 
 		for (int i = 0; i < iterations; i++) {
 			if (currentNode != null) {
-				previousNode = currentNode;
 				currentNode = currentNode.getNext();
 			}
 		}
 
 		if (currentNode != null) {
-			if (previousNode != null) {
-				previousNode.setNext(currentNode.getNext());
+			if (currentNode != headNode) {
+				if (currentNode.getPrev() != null) {
+					currentNode.getPrev().setNext(currentNode.getNext());
+				}
+				if (currentNode.getNext() != null) {
+					currentNode.getNext().setPrev(currentNode.getPrev());
+				}
 			}
 			else {
 				headNode = currentNode.getNext();
+				if (headNode != null) {
+					headNode.setPrev(null);
+				}
 			}
 			currentNode.setNext(null);
+			currentNode.setPrev(null);
 			value = currentNode.getValue();
 		}
 
@@ -89,19 +108,28 @@ public class LinkedLinearList<T extends Comparable<T>> extends LinearList<T> {
 
 	@Override
 	public boolean remove(T value) {
-		Node<T> currentNode = headNode, previousNode = null;
+		Node<T> currentNode = headNode;
 
 		while (currentNode != null) {
 			if (value.compareTo(currentNode.getValue()) == 0) {
-				if (previousNode != null) {
-					previousNode.setNext(currentNode.getNext());
-				} else {
+				if (currentNode != headNode) {
+					if (currentNode.getPrev() != null) {
+						currentNode.getPrev().setNext(currentNode.getNext());
+					}
+					if (currentNode.getNext() != null) {
+						currentNode.getNext().setPrev(currentNode.getPrev());
+					}
+				}
+				else {
 					headNode = currentNode.getNext();
+					if (headNode != null) {
+						headNode.setPrev(null);
+					}
 				}
 				currentNode.setNext(null);
+				currentNode.setPrev(null);
 				return true;
 			}
-			previousNode = currentNode;
 			currentNode = currentNode.getNext();
 		}
 		return false;
