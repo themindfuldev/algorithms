@@ -1,7 +1,7 @@
 package datastructures.list;
 
 public class LinkedLinearList<T extends Comparable<T>> extends LinearList<T> {
-	private class Node<U extends Comparable<U>> {
+	class Node<U extends Comparable<U>> {
 		private U value;
 		private Node<U> next;
 
@@ -29,7 +29,7 @@ public class LinkedLinearList<T extends Comparable<T>> extends LinearList<T> {
 
 	}
 
-	private Node<T> headNode = null;
+	Node<T> headNode = null;
 
 	@Override
 	public void insert(T value) {

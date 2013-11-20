@@ -24,7 +24,7 @@ public class LinkedLinearListTest {
 	}
 
 	@Test
-	public void testInsertFirst() {
+	public void testInsert() {
 		list.insert(2);
 		list.insert(3);
 		list.insert(1);

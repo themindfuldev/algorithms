@@ -4,7 +4,7 @@ package datastructures.list;
 public class SequentialOrderedLinearList<T extends Comparable<T>> extends
 		LinearList<T> {
 	
-	private class Node<U extends Comparable<U>> {
+	class Node<U extends Comparable<U>> {
 		private U value;
 		private int next;
 
@@ -33,11 +33,11 @@ public class SequentialOrderedLinearList<T extends Comparable<T>> extends
 		
 	}
 
-	private static int MAX_CAPACITY = 99999999;
+	static int MAX_CAPACITY = 99999999;
 	@SuppressWarnings("unchecked")
-	private Node<T>[] list = new Node[MAX_CAPACITY];
-	private int headIndex = -1;
-	private int lastIndex = 0;
+	Node<T>[] list = new Node[MAX_CAPACITY];
+	int headIndex = -1;
+	int lastIndex = 0;
 
 	@Override
 	public void insert(T value) {

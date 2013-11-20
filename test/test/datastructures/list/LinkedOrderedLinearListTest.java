@@ -1,21 +1,21 @@
 package test.datastructures.list;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import datastructures.list.LinearList;
-import datastructures.list.SequentialOrderedLinearList;
+import datastructures.list.LinkedOrderedLinearList;
 
-public class SequentialOrderedLinearListTest {
+public class LinkedOrderedLinearListTest {
 	
 	LinearList<Integer> list;
 	
 	@Before
 	public void setUp() {
-		list = new SequentialOrderedLinearList<>();
+		list = new LinkedOrderedLinearList<>();
 	}
 	
 	@After
@@ -40,9 +40,9 @@ public class SequentialOrderedLinearListTest {
 	
 	@Test
 	public void testGet() {
-		list.insert(1);
-		list.insert(1);
 		list.insert(2);
+		list.insert(1);
+		list.insert(1);
 		
 		assertEquals("Getting valid element", new Integer(2), list.get(2));
 		assertEquals("Getting invalid element positive", null, list.get(5));
