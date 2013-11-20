@@ -68,6 +68,10 @@ public class LinkedLinearListTest {
 		assertEquals("Removing first element", true, list.remove(new Integer(0)));
 		assertEquals("Verifying removal of first element", "1", list.print());
 		assertEquals("Verifying size", 1, list.size());
+		
+		assertEquals("Removing last element", true, list.remove(new Integer(1)));
+		assertEquals("Verifying removal of last element", "", list.print());
+		assertEquals("Verifying size", 0, list.size());
 	}
 	
 	@Test
@@ -89,6 +93,10 @@ public class LinkedLinearListTest {
 		assertEquals("Removing first element", new Integer(0), list.remove(0));
 		assertEquals("Verifying removal of first element", "1", list.print());
 		assertEquals("Verifying size", 1, list.size());
+
+		assertEquals("Removing last element", new Integer(1), list.remove(0));
+		assertEquals("Verifying removal of last element", "", list.print());
+		assertEquals("Verifying size", 0, list.size());
 	}
 
 }

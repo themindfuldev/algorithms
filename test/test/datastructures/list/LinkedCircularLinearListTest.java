@@ -7,15 +7,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import datastructures.list.LinearList;
-import datastructures.list.LinkedOrderedLinearList;
+import datastructures.list.LinkedLinearList;
 
-public class LinkedOrderedLinearListTest {
+public class LinkedCircularLinearListTest {
 	
 	LinearList<Integer> list;
 	
 	@Before
 	public void setUp() {
-		list = new LinkedOrderedLinearList<>();
+		list = new LinkedLinearList<>();
 	}
 	
 	@After
@@ -34,7 +34,7 @@ public class LinkedOrderedLinearListTest {
 		list.insert(7);
 		list.insert(3);
 		list.insert(0);		
-		assertEquals("Verifying adding", "0,0,1,2,3,3,4,5,7", list.print());
+		assertEquals("Verifying adding", "0,3,7,0,4,5,1,3,2", list.print());
 		assertEquals("Verifying size", 9, list.size());
 	}
 	
@@ -82,7 +82,7 @@ public class LinkedOrderedLinearListTest {
 		list.insert(0);
 		
 		assertEquals("Removing invalid element", null, list.remove(8));
-		assertEquals("Removing valid element", new Integer(2), list.remove(3));
+		assertEquals("Removing valid element", new Integer(2), list.remove(1));
 		assertEquals("Verifying removal of valid element", "0,1,1", list.print());
 		assertEquals("Verifying size", 3, list.size());
 		
