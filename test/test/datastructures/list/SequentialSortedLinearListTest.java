@@ -7,15 +7,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 import datastructures.list.LinearList;
-import datastructures.list.SequentialOrderedLinearList;
+import datastructures.list.SequentialSortedLinearList;
 
-public class SequentialOrderedLinearListTest {
+public class SequentialSortedLinearListTest {
 	
 	LinearList<Integer> list;
 	
 	@Before
 	public void setUp() {
-		list = new SequentialOrderedLinearList<>();
+		list = new SequentialSortedLinearList<>();
 	}
 	
 	@After

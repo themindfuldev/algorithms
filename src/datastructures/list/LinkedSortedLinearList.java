@@ -1,7 +1,7 @@
 package datastructures.list;
 
 
-public class LinkedOrderedLinearList<T extends Comparable<T>> extends
+public class LinkedSortedLinearList<T extends Comparable<T>> extends
 		LinkedLinearList<T> {
 
 	@Override

@@ -1,7 +1,7 @@
 package datastructures.list;
 
 
-public class SequentialOrderedLinearList<T extends Comparable<T>> extends
+public class SequentialSortedLinearList<T extends Comparable<T>> extends
 		LinearList<T> {
 	
 	class Node<U extends Comparable<U>> {

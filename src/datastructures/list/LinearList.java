@@ -7,10 +7,6 @@ public abstract class LinearList<T> {
 		throw new NotImplementedException();
 	}
 
-	public void insert(T value, int index) {
-		throw new NotImplementedException();
-	}
-
 	public T get(int index) {
 		throw new NotImplementedException();
 	}
