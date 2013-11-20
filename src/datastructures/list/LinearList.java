@@ -3,11 +3,7 @@ package datastructures.list;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public abstract class LinearList<T> {
-	public void insertFirst(T value) {
-		throw new NotImplementedException();
-	}
-
-	public void insertLast(T value) {
+	public void insert(T value) {
 		throw new NotImplementedException();
 	}
 

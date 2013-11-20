@@ -1,21 +1,21 @@
 package test.datastructures.list;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import datastructures.list.LinearList;
-import datastructures.list.SequentialOrderedLinearList;
+import datastructures.list.LinkedLinearList;
 
-public class SequentialOrderedLinearListTest {
+public class LinkedLinearListTest {
 	
 	LinearList<Integer> list;
 	
 	@Before
 	public void setUp() {
-		list = new SequentialOrderedLinearList<>();
+		list = new LinkedLinearList<>();
 	}
 	
 	@After
@@ -24,7 +24,7 @@ public class SequentialOrderedLinearListTest {
 	}
 
 	@Test
-	public void testInsertLast() {
+	public void testInsertFirst() {
 		list.insert(2);
 		list.insert(3);
 		list.insert(1);
@@ -34,15 +34,15 @@ public class SequentialOrderedLinearListTest {
 		list.insert(7);
 		list.insert(3);
 		list.insert(0);		
-		assertEquals("Verifying adding", "0,0,1,2,3,3,4,5,7", list.print());
+		assertEquals("Verifying adding", "0,3,7,0,4,5,1,3,2", list.print());
 		assertEquals("Verifying size", 9, list.size());
 	}
 	
 	@Test
 	public void testGet() {
-		list.insert(1);
-		list.insert(1);
 		list.insert(2);
+		list.insert(1);
+		list.insert(1);
 		
 		assertEquals("Getting valid element", new Integer(2), list.get(2));
 		assertEquals("Getting invalid element positive", null, list.get(5));
@@ -78,7 +78,7 @@ public class SequentialOrderedLinearListTest {
 		list.insert(0);
 		
 		assertEquals("Removing invalid element", null, list.remove(8));
-		assertEquals("Removing valid element", new Integer(2), list.remove(3));
+		assertEquals("Removing valid element", new Integer(2), list.remove(1));
 		assertEquals("Verifying removal of valid element", "0,1,1", list.print());
 		assertEquals("Verifying size", 3, list.size());
 		
