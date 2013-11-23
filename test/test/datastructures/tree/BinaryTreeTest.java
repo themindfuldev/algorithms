@@ -124,11 +124,9 @@ public class BinaryTreeTest {
 		tree.insert(10);
 		tree.insert(11);
 		tree.insert(12);
-
 		assertEquals("printing in breadth", "5, 6, 7, 8, 9, 10, 11, 12", tree.printBreadth());
 		
 		tree.balanceTree();
-		System.out.println(tree.printBreadth());
 		assertEquals("printing in breadth", "8, 6, 10, 5, 7, 9, 11, 12", tree.printBreadth());
 	}
 	
