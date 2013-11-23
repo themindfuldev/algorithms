@@ -1,6 +1,8 @@
 package datastructures.tree;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class BinaryTree<T extends Comparable<T>> {
@@ -340,6 +342,40 @@ public class BinaryTree<T extends Comparable<T>> {
 		}
 		
 		return result.substring(0, result.lastIndexOf(",")).toString();
+	}
+	
+	public void balanceTree() {
+		List<T> list = getElementsInOrder(rootNode);
+		
+		for (T value: list) {
+			delete(value);
+		}
+
+		balanceNode(list, 0, list.size()-1);
+	}
+	
+	private void balanceNode(List<T> list, int startPos, int endPos) {
+		if (startPos <= endPos) {
+			int position = (startPos + endPos)/2;
+			T value = list.get(position);
+			if (value != null) {
+				insert(value);
+				balanceNode(list, startPos, position-1);
+				balanceNode(list, position+1, endPos);
+			}
+		}
+	}
+
+	private List<T> getElementsInOrder(Node<T> currentNode) {
+		List<T> list = new ArrayList<>();
+
+		if (currentNode != null) {
+			list.addAll(getElementsInOrder(currentNode.getLeftNode()));
+			list.add(currentNode.getValue());
+			list.addAll(getElementsInOrder(currentNode.getRightNode()));
+		}
+
+		return list;
 	}
 
 }
