@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/algorithms/sorting/InsertionSort.java=UTF-8
+encoding//src/algorithms/sorting/SelectionSort.java=UTF-8
 encoding//src/algorithms/sorting/SwapSort.java=UTF-8
 encoding//test/test/datastructures/tree/HuffmanTreeTest.java=UTF-8
