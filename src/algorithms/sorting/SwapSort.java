@@ -60,7 +60,37 @@ public class SwapSort<T extends Comparable<T>> {
 				}
 			}
 		} while (swap == true || h > 1);
-
+	}
+	
+	public void quickSort(T[] array) {
+		quickSort(array, 0, array.length-1);
+	}
+	
+	private void quickSort(T[] array, int left, int right) {
+		int i = left;
+		int j = right;
+		T item = array[(left+right)/2];
+		do {
+			while (array[i].compareTo(item) < 0) {
+				i++;
+			}
+			while (array[j].compareTo(item) > 0) {
+				j--;
+			}
+			if (i < j) {
+				T temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+				i++;
+				j--;
+			}
+		} while (i < j);
+		if (left < j && j < right) {
+			quickSort(array, left, j);
+		}
+		if (left < i && i < right) {
+			quickSort(array, i, right);
+		}
 	}
 
 }

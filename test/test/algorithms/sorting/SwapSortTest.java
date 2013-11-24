@@ -47,4 +47,13 @@ public class SwapSortTest {
 		
 		assertEquals("sorted correctly", "[12, 15, 17, 21, 22, 24, 27, 37, 42, 43, 47, 52]", Arrays.toString(array));
 	}
+	
+	@Test
+	public void testQuickSort() {
+		Integer[] array = new Integer[]{17,	12,	21,	15,	27,	22,	42,	24,	47,	37,	52,	43};
+		swapSort.quickSort(array);
+		
+		assertEquals("sorted correctly", "[12, 15, 17, 21, 22, 24, 27, 37, 42, 43, 47, 52]", Arrays.toString(array));
+	}
+
 }
