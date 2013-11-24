@@ -16,7 +16,7 @@ public class SwapSort<T extends Comparable<T>> {
 
 	public void shakeSort(T[] array) {
 		int left = 0;
-		int right = array.length-1;
+		int right = array.length - 1;
 
 		do {
 			int lastSwap = left;
@@ -39,6 +39,28 @@ public class SwapSort<T extends Comparable<T>> {
 			}
 			left = lastSwap;
 		} while (left < right);
+	}
+
+	public void combSort(T[] array) {
+		int length = array.length;
+		int h = length;
+		boolean swap;
+		do {
+			h = (int) (h / 1.3);
+			if (h == 9 || h == 10) {
+				h = 11;
+			}
+			swap = false;
+			for (int i = 0; i < (length-h); i++) {
+				if (array[i].compareTo(array[i + h]) > 0) {
+					T item = array[i];
+					array[i] = array[i + h];
+					array[i + h] = item;
+					swap = true;
+				}
+			}
+		} while (swap == true || h > 1);
+
 	}
 
 }
